@@ -1,0 +1,29 @@
+{
+  "name": "logFileHandlerIOS",
+  "version": "0.1.0",
+  "summary": "This project will create a logfile and main record of logfile",
+  "description": "'This project will create a logfile and main record of logfile.just import this library and check this pod'",
+  "homepage": "https://github.com/Hamza Mughal/logFileHandlerIOS",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Hamza Mughal": "hamza.mughal@whizpool.com"
+  },
+  "source": {
+    "git": "https://github.com/Hamza Mughal/logFileHandlerIOS.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "source_files": "logFileHandlerIOS/Classes/**/*",
+  "swift_versions": "5.0",
+  "dependencies": {
+    "SSZipArchive": [
+      "~> 2.4.2"
+    ]
+  },
+  "swift_version": "5.0"
+}

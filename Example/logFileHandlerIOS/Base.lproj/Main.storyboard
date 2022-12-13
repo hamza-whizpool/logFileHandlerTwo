@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="logFileHandlerIOS_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3R-0Q-Yai">
+                                <rect key="frame" x="66" y="311" width="261" height="230"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qQY-Ig-WVf">
+                                        <rect key="frame" x="0.0" y="0.0" width="261" height="230"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lve-Mb-3EC">
+                                                <rect key="frame" x="0.0" y="0.0" width="261" height="70"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ok4-ju-vGy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="261" height="70"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="print log"/>
+                                                        <connections>
+                                                            <action selector="showLogBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="H4u-BA-qxH"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="Vvy-TC-ED1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ok4-ju-vGy" secondAttribute="trailing" id="W6l-31-Ybf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ok4-ju-vGy" secondAttribute="bottom" id="hUd-rZ-Fx5"/>
+                                                    <constraint firstItem="Ok4-ju-vGy" firstAttribute="top" secondItem="lve-Mb-3EC" secondAttribute="top" id="nos-97-bIE"/>
+                                                    <constraint firstItem="Ok4-ju-vGy" firstAttribute="leading" secondItem="lve-Mb-3EC" secondAttribute="leading" id="zcx-Be-VBK"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cf4-4t-DNy">
+                                                <rect key="frame" x="0.0" y="80" width="261" height="70"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ka-rO-668">
+                                                        <rect key="frame" x="0.0" y="0.0" width="261" height="70"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="delete log"/>
+                                                        <connections>
+                                                            <action selector="delteLogBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="rgG-Gi-dZp"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="Icn-ji-1W9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9Ka-rO-668" secondAttribute="bottom" id="UVb-30-vKN"/>
+                                                    <constraint firstItem="9Ka-rO-668" firstAttribute="top" secondItem="cf4-4t-DNy" secondAttribute="top" id="Ul0-tP-s9V"/>
+                                                    <constraint firstItem="9Ka-rO-668" firstAttribute="leading" secondItem="cf4-4t-DNy" secondAttribute="leading" id="fSo-tX-IvQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9Ka-rO-668" secondAttribute="trailing" id="mLa-5k-0w5"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A20-Ya-SRW">
+                                                <rect key="frame" x="0.0" y="160" width="261" height="70"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9F-Pu-3zc">
+                                                        <rect key="frame" x="0.0" y="0.0" width="261" height="70"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="send log"/>
+                                                        <connections>
+                                                            <action selector="sendLOgBtn:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ttz-Ie-5XP"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="f9F-Pu-3zc" secondAttribute="trailing" id="I4p-fi-LmF"/>
+                                                    <constraint firstAttribute="height" constant="70" id="WA5-v2-GFK"/>
+                                                    <constraint firstAttribute="bottom" secondItem="f9F-Pu-3zc" secondAttribute="bottom" id="XUI-w4-Bd5"/>
+                                                    <constraint firstItem="f9F-Pu-3zc" firstAttribute="leading" secondItem="A20-Ya-SRW" secondAttribute="leading" id="eDn-VP-7eR"/>
+                                                    <constraint firstItem="f9F-Pu-3zc" firstAttribute="top" secondItem="A20-Ya-SRW" secondAttribute="top" id="gri-rd-fl6"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="qQY-Ig-WVf" firstAttribute="leading" secondItem="I3R-0Q-Yai" secondAttribute="leading" id="44o-qJ-HUc"/>
+                                    <constraint firstItem="qQY-Ig-WVf" firstAttribute="top" secondItem="I3R-0Q-Yai" secondAttribute="top" id="AFq-W8-w6d"/>
+                                    <constraint firstAttribute="bottom" secondItem="qQY-Ig-WVf" secondAttribute="bottom" id="RgI-DD-pTx"/>
+                                    <constraint firstAttribute="trailing" secondItem="qQY-Ig-WVf" secondAttribute="trailing" id="Rjw-tB-kdE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="I3R-0Q-Yai" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="N5t-Uf-vEE"/>
+                            <constraint firstItem="I3R-0Q-Yai" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="p9f-8l-ddl"/>
+                            <constraint firstItem="I3R-0Q-Yai" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="50" id="pVq-H1-pI4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="I3R-0Q-Yai" secondAttribute="trailing" constant="50" id="w1n-JQ-pbD"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="55" y="-52"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

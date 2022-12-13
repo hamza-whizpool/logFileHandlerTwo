@@ -1,0 +1,14 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'logFileHandlerIOS_Example' do
+  pod 'logFileHandlerIOS', :path => '../'
+  pod 'SSZipArchive', '~> 2.4.2'
+  
+  target 'logFileHandlerIOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

@@ -1,0 +1,6 @@
+framework module Pods_logFileHandlerIOS_Example {
+  umbrella header "Pods-logFileHandlerIOS_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
