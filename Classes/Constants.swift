@@ -28,4 +28,12 @@ public class Constants
     
     static let textViewPlaceHolder = "Write here about your bug detail"
     
+    static let ok = "Ok"
+    static let alertTitle = "Alert"
+    static let bugDetailMissingText = "Bug Detail is Missing"
+    static let emailNotConfigureText = "Email not configure"
+    
+    static let knobRadius = 3.0
+    static let defaultRadius = 12.0
+    
 }

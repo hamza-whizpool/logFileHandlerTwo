@@ -23,9 +23,6 @@ public class AlertViewController: UIViewController {
     @IBOutlet weak var sendBtnLbl: UILabel!
     @IBOutlet weak var sendBtnView: UIView!
 
-    // skip button outlet
-//    @IBOutlet weak var skip_btn_outlet: UIButton!
-
     // main view outlet
     @IBOutlet weak var mainAlertView: UIView!
     @IBOutlet weak var textFieldView: UIView!
@@ -37,9 +34,7 @@ public class AlertViewController: UIViewController {
     // Bugs TextView Outlet
     @IBOutlet weak var bugsTextview: GrowingTextView!
 
-    // Close Btn outlet
-//    @IBOutlet weak var closeBtnOutlet: UIButton!
-
+    // send button image view outlet
     @IBOutlet weak var sendBtnImage : UIImageView!
     
     
@@ -53,9 +48,6 @@ public class AlertViewController: UIViewController {
         // Textview Editing function
         textviewEditing()
         
-        // calling function of NewControllerInitilizer() for showing main view
-        newControllerInitilizer()
-        
         self.bDarkMode = self.checkDarkMode()
     }
     
@@ -63,23 +55,19 @@ public class AlertViewController: UIViewController {
     
     @IBAction func sendBtnAction(_ sender: UIButton)
     {
-        // Send Button Action where we can check textview is empty or check text is equal to placeholder when both condition are ture we can show alert message Bug Detail is Missing if condition is false then we can proceed further
+        /// Send Button Action where we can check textview is empty or check text is equal to placeholder when both condition are ture we can show alert message Bug Detail is Missing if condition is false then we can proceed further
         
         if bugsTextview.text.isEmpty || bugsTextview.text == SLog.shared.textViewPlaceHolder || bugsTextview.text.count <= 10
         {
             // show alert when textview is empty
-            let alert = UIAlertController(title: "Alert", message: "Bug Detail is Missing", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            CommonMethods.showAlertWith(csTitle: Constants.alertTitle, csMessage: Constants.bugDetailMissingText, viewController: self)
         }
         else
         {
             let recieverEmail = SLog.shared.sendToEmail
             guard MFMailComposeViewController.canSendMail()  else {
-                
-                let alert = UIAlertController(title: "Alert", message: "Email not configure", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                //
+                CommonMethods.showAlertWith(csTitle: Constants.alertTitle, csMessage: Constants.emailNotConfigureText, viewController: self)
                 return
             }
             
@@ -103,44 +91,60 @@ public class AlertViewController: UIViewController {
     
     // MARK: - // ********************* Methods *********************// -
     
-    func newControllerInitilizer()
-    {
-        textFieldView.isHidden = false
-        //view.backgroundColor = UIColor(white: 1, alpha: 0.4)
-        view.backgroundColor = .init(white: 0, alpha: 1.0)
-    }
-    
-    //****************************************************
-    
-    // Function create zip and create password on it
+    /// func will combine the all the log files which are being created every day into one final log file
+    /// when we report the bug of wants the log fiels it will combine all the log files
+    /// then zip it and post it at the given email address
+    /// Function create zip and create password on it
     func createPasswordProtectedZipLogFile(at logfilePath: String, composer viewController: MFMailComposeViewController)
     {
         var isZipped:Bool = false
         // calling combine all files into one file
-        SLog.shared.combineLogFiles { filePath in
+        SLog.shared.combineLogFiles { filePath, combineFileErr in
             //
-            SLog.shared.makeJsonFile { jsonfilePath in
-                //
-                let contentsPath = logfilePath
-                
-                // create a json file and call a function of makeJsonFile
-                if FileManager.default.fileExists(atPath: contentsPath)
-                {
-                    let createZipPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(SLog.shared.finalLogFileNameAfterCombine).zip").path
-                    if SLog.shared.password.isEmpty{
-                        isZipped = SSZipArchive.createZipFile(atPath: createZipPath, withContentsOfDirectory: contentsPath)
-                    }
-                    else{
-                        isZipped = SSZipArchive.createZipFile(atPath: createZipPath, withContentsOfDirectory: contentsPath, keepParentDirectory: true, withPassword: SLog.shared.password)
-                    }
+            
+            if combineFileErr != nil {
+                CommonMethods.showAlertWithHandler(viewContoller: self, title: Constants.alertTitle, message: combineFileErr!.localizedDescription, leftButtonText: Constants.ok, rightButtonText: "") {
+                    return
+                } rightButtonActionHandler: {
+                    //
+                }
+            }
+            else
+            {
+                SLog.shared.makeJsonFile { jsonfilePath, jsonErr in
+                    //
+                    let contentsPath = logfilePath
                     
-                    if isZipped {
-                        var data = NSData(contentsOfFile: createZipPath) as Data?
-                        if let data = data
-                        {
-                            viewController.addAttachmentData(data, mimeType: "application/zip", fileName: ("\(SLog.shared.finalLogFileNameAfterCombine).zip"))
+                    if jsonErr != nil
+                    {
+                        CommonMethods.showAlertWithHandler(viewContoller: self, title: Constants.alertTitle, message: jsonErr!.localizedDescription, leftButtonText: Constants.ok, rightButtonText: "") {
+                            return
+                        } rightButtonActionHandler: {
+                            //
                         }
-                        data = nil
+                    }
+                    else
+                    {
+                        // create a json file and call a function of makeJsonFile
+                        if FileManager.default.fileExists(atPath: contentsPath)
+                        {
+                            let createZipPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(SLog.shared.finalLogFileNameAfterCombine).zip").path
+                            if SLog.shared.password.isEmpty{
+                                isZipped = SSZipArchive.createZipFile(atPath: createZipPath, withContentsOfDirectory: contentsPath)
+                            }
+                            else{
+                                isZipped = SSZipArchive.createZipFile(atPath: createZipPath, withContentsOfDirectory: contentsPath, keepParentDirectory: true, withPassword: SLog.shared.password)
+                            }
+                            
+                            if isZipped {
+                                var data = NSData(contentsOfFile: createZipPath) as Data?
+                                if let data = data
+                                {
+                                    viewController.addAttachmentData(data, mimeType: "application/zip", fileName: ("\(SLog.shared.finalLogFileNameAfterCombine).zip"))
+                                }
+                                data = nil
+                            }
+                        }
                     }
                 }
             }
@@ -226,7 +230,7 @@ extension AlertViewController:UITextViewDelegate {
         DispatchQueue.main.async {
             //
             self.bugsTextview.delegate = self
-            self.bugsTextview.layer.cornerRadius = 12.0
+            self.bugsTextview.layer.cornerRadius = Constants.defaultRadius
 //            self.bugsTextview.maxHeight = (UIScreen.main.bounds.size.height / 2) - 140
 //            self.bugsTextview.minHeight = (UIScreen.main.bounds.size.height / 2) - 140
             self.bugsTextview.trimWhiteSpaceWhenEndEditing = true
@@ -238,18 +242,18 @@ extension AlertViewController:UITextViewDelegate {
             self.bugsTextview.translatesAutoresizingMaskIntoConstraints = false
             self.bugsTextview.becomeFirstResponder()
 
-            self.mainTextFieldViewHeight.constant = (self.view.bounds.size.height / 2) - 100
+            self.mainTextFieldViewHeight.constant = (self.view.bounds.size.height * 0.39)
             
             
             // main view corner radius
-            self.textFieldView.layer.cornerRadius = 12.0
+            self.textFieldView.layer.cornerRadius = Constants.defaultRadius
             
             if SLog.shared.textViewBackgroundColor != nil
             {
                 self.textFieldView.backgroundColor = SLog.shared.textViewBackgroundColor
             }
             
-            self.mainAlertView.layer.cornerRadius = 12.0
+            self.mainAlertView.layer.cornerRadius = Constants.defaultRadius
 //            self.mainAlertView.backgroundColor = SLog.shared.alertBackgroundColor
 //            self.titile_lbl.textColor = SLog.shared.textColor
             
@@ -267,7 +271,7 @@ extension AlertViewController:UITextViewDelegate {
                 self.lineView.backgroundColor = SLog.shared.lineColor
             }
             
-            self.knobView.layer.cornerRadius = 3
+            self.knobView.layer.cornerRadius = Constants.knobRadius
             if SLog.shared.lineColor != nil
             {
                 self.knobView.backgroundColor = SLog.shared.knobColor
@@ -280,7 +284,7 @@ extension AlertViewController:UITextViewDelegate {
             
             
             // Send Button corner radius, text and text color
-            self.sendBtnView.layer.cornerRadius = 12.0
+            self.sendBtnView.layer.cornerRadius = Constants.defaultRadius
             
             if SLog.shared.sendButtonBackgroundColor != nil
             {
@@ -306,7 +310,7 @@ extension AlertViewController:UITextViewDelegate {
             // set Send button Lable
             if SLog.shared.sendBtnText.isEmpty
             {
-                self.sendBtnLbl.text = "Send"
+                self.sendBtnLbl.text = Constants.defaultSendBtnText
             }
             else
             {

@@ -32,6 +32,7 @@
 		6D3BDC8D2948A1080047D2DB /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D3BDC872948A1080047D2DB /* AlertViewController.xib */; };
 		6D3BDC8E2948A1080047D2DB /* SLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3BDC882948A1080047D2DB /* SLog.swift */; };
 		6D3BDC8F2948A1080047D2DB /* asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D3BDC892948A1080047D2DB /* asset.xcassets */; };
+		6DDDF59D294B016D000A8114 /* CommonMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DDDF59C294B016D000A8114 /* CommonMethods.swift */; };
 		7DB2C0596405DB863CF2B2A489AE2636 /* mz_zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C97796A68E3416C1E0F893499E1417B /* mz_zip.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		7F58BE8838D03B2D5B30E68952FF1E4D /* SSZipArchive-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 48F7904E29DC76AC92222DA3B2A9F96F /* SSZipArchive-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		89AECD9F4931EA70C032C83AB105F415 /* mz_os.c in Sources */ = {isa = PBXBuildFile; fileRef = 50CC78E13C1B969AC2415BB6DE845C0E /* mz_os.c */; };
@@ -140,6 +141,7 @@
 		6D3BDC872948A1080047D2DB /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AlertViewController.xib; path = Classes/AlertViewController.xib; sourceTree = "<group>"; };
 		6D3BDC882948A1080047D2DB /* SLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SLog.swift; path = Classes/SLog.swift; sourceTree = "<group>"; };
 		6D3BDC892948A1080047D2DB /* asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = asset.xcassets; path = Classes/asset.xcassets; sourceTree = "<group>"; };
+		6DDDF59C294B016D000A8114 /* CommonMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonMethods.swift; path = Classes/CommonMethods.swift; sourceTree = "<group>"; };
 		745F5B25D118AA9CDD85667DDDF39046 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		77C73DA55A7AF40F3E1F90CCE06FBC8E /* Pods-logFileHandlerIOS_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-logFileHandlerIOS_Tests-dummy.m"; sourceTree = "<group>"; };
 		7AE3274AE9BC305DC84991875A728E0C /* SSZipArchive.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SSZipArchive.modulemap; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			isa = PBXGroup;
 			children = (
 				6D3BDC862948A1080047D2DB /* AlertViewController.swift */,
+				6DDDF59C294B016D000A8114 /* CommonMethods.swift */,
 				6D3BDC852948A1080047D2DB /* Constants.swift */,
 				6D3BDC842948A1080047D2DB /* GrowingTextView.swift */,
 				6D3BDC882948A1080047D2DB /* SLog.swift */,
@@ -663,6 +666,7 @@
 				D1D14BD9748C79D6B9992A5D340D1A59 /* logFileHandlerIOS-dummy.m in Sources */,
 				6D3BDC8E2948A1080047D2DB /* SLog.swift in Sources */,
 				6D3BDC8A2948A1080047D2DB /* GrowingTextView.swift in Sources */,
+				6DDDF59D294B016D000A8114 /* CommonMethods.swift in Sources */,
 				6D3BDC8B2948A1080047D2DB /* Constants.swift in Sources */,
 				6D3BDC8C2948A1080047D2DB /* AlertViewController.swift in Sources */,
 			);

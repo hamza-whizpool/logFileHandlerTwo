@@ -144,30 +144,6 @@ public class SLog {
     
     // MARK: - ********************* Public Functions *********************// -
     
-    /// FUNC GET THE ZIP FILE PATH
-    /// WE WILL PROVIDE THE DIRECTORY NAME
-    public func getLogFilePath (completion: (String) -> ())
-    {
-        let filePath = SLog.shared.getRootDirPath()
-        let url = URL(string: filePath)
-        let zipPath = url!.appendingPathComponent("/\(SLog.shared.logFileNewFolderName)")
-        
-        self.createPasswordProtectedZipLogFile(at: zipPath.path) { path in
-            completion(path)
-        }
-        
-//        do {
-//
-//        }
-//        catch let error as NSError
-//        {
-//            print("Unable to create directory \(error.debugDescription)")
-//            completion("")
-//        }
-    }
-    
-    // ****************************************************
-    
     /// this function is used for writing logs in log file and print on console
     public func summaryLog(text: String?)
     {
@@ -303,10 +279,7 @@ public class SLog {
     // setting background color for alert view
     public func setMainBackgroundColor (backgroundColor : UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.alertBackgroundColor = backgroundColor
-        }
+        self.alertBackgroundColor = backgroundColor
     }
     
     // ****************************************************
@@ -314,10 +287,7 @@ public class SLog {
     // setting background color for Text View
     public func setTextViewBackgroundColor (backgroundColor : UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.textViewBackgroundColor = backgroundColor
-        }
+        self.textViewBackgroundColor = backgroundColor
     }
     
     // ****************************************************
@@ -325,30 +295,21 @@ public class SLog {
     // setting background color for Send Button
     public func setSendButtonBackgroundColor (backgroundColor : UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.sendButtonBackgroundColor = backgroundColor
-        }
+        self.sendButtonBackgroundColor = backgroundColor
     }
     
     // ********************* line and knob View *********************
     
     public func setLineColor (color : UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.lineColor = color
-        }
+        self.lineColor = color
     }
     
     //****************************************************
     
     public func setKnobColor (color : UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.knobColor = color
-        }
+        self.knobColor = color
     }
     
     // ********************* Title View *********************
@@ -356,10 +317,7 @@ public class SLog {
     // setting title color
     public func setTitleColor (color : UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.titleTextColor = color
-        }
+        self.titleTextColor = color
     }
     
     //****************************************************
@@ -367,10 +325,7 @@ public class SLog {
     // setting title Font
     public func setTitleFont (fontName : String)
     {
-        DispatchQueue.main.async {
-            //
-            self.titleFont = fontName
-        }
+        self.titleFont = fontName
     }
     
     //****************************************************
@@ -378,10 +333,7 @@ public class SLog {
     // setting title Font Size
     public func setTitleFontSize (fontSize: Int)
     {
-        DispatchQueue.main.async {
-            //
-            self.titleFontSize = fontSize
-        }
+        self.titleFontSize = fontSize
     }
     
     //****************************************************
@@ -389,10 +341,7 @@ public class SLog {
     // setting Send button color
     public func setSendBtnTextColor (color : UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.SendBtntextColor = color
-        }
+        self.SendBtntextColor = color
     }
     
     //****************************************************
@@ -400,10 +349,7 @@ public class SLog {
     // setting Send button Title Font
     public func setSendBtnFont (fontName : String)
     {
-        DispatchQueue.main.async {
-            //
-            self.sendBtnFont = fontName
-        }
+        self.sendBtnFont = fontName
     }
     
     //****************************************************
@@ -411,10 +357,7 @@ public class SLog {
     // setting Send button Title Font Size
     public func setSendBtnFontSize (fontSize: Int)
     {
-        DispatchQueue.main.async {
-            //
-            self.sendBtnFontSize = fontSize
-        }
+        self.sendBtnFontSize = fontSize
     }
     
     //****************************************************
@@ -422,10 +365,7 @@ public class SLog {
     // setting background color for TEXT view
     public func setTextViewTextColor (color:UIColor)
     {
-        DispatchQueue.main.async {
-            //
-            self.textViewTextColor = color
-        }
+        self.textViewTextColor = color
     }
     
     //****************************************************
@@ -433,10 +373,7 @@ public class SLog {
     // setting text field Font
     public func setTextViewFont (fontName : String)
     {
-        DispatchQueue.main.async {
-            //
-            self.textViewFont = fontName
-        }
+        self.textViewFont = fontName
     }
 
     //****************************************************
@@ -444,24 +381,7 @@ public class SLog {
     // setting text field Font
     public func setTextViewFontSize (fontSize: Int)
     {
-        DispatchQueue.main.async {
-            //
-            self.textViewFontSize = fontSize
-        }
-    }
-    
-    //****************************************************
-    
-    // Function For Checking App is in Debug mode or not
-    public func isInDebugMode() -> Bool
-    {
-#if DEBUG
-        print("In Debug Mode")
-        return true
-#else
-        print("Not In Debug Mode")
-        return false
-#endif
+        self.textViewFontSize = fontSize
     }
     
     // MARK: - ********************* Private Functions *********************// -
@@ -568,7 +488,7 @@ public class SLog {
     /// func will combine the all the log files which are being created every day into one final log file
     /// when we report the bug of wants the log fiels it will combine all the log files
     /// then zip it and post it at the given email address
-    func combineLogFiles(completion: (String) -> ())
+    func combineLogFiles(completion: (String, Error?) -> ())
     {
         // Delete Zip Folder
         _ = SLog.shared.deleteFile(fileName: SLog.shared.logFileNewFolderName)
@@ -614,7 +534,7 @@ public class SLog {
                 }
                 catch {
                     print(error.localizedDescription)
-                    completion("")
+                    completion("", error)
                 }
             }
         }
@@ -633,7 +553,7 @@ public class SLog {
                 // Once we convert our new content to data and write it, we close the file and that’s it!
                 fileUpdater.closeFile()
 
-                completion(fileCombine!.path)
+                completion(fileCombine!.path, nil)
             }
         }
         else
@@ -647,73 +567,11 @@ public class SLog {
                     let pathURL = fileCombine! // URL
                     let pathString = pathURL.path // String
 
-                    completion(pathString)
+                    completion(pathString, nil)
                 }
                 catch {
                     print(error.localizedDescription)
-                    completion("")
-                }
-            }
-        }
-    }
-    
-    // ****************************************************
-    
-    /// func will combine the all the log files which are being created every day into one final log file
-    /// when we report the bug of wants the log fiels it will combine all the log files
-    /// then zip it and post it at the given email address
-    /// Function create zip and create password on it
-    func createPasswordProtectedZipLogFile(at logfilePath: String, completion: (String) -> ())
-    {
-        var isZipped:Bool = false
-        // calling combine all files into one file
-        self.combineLogFiles { filePath in
-            //
-            self.makeJsonFile { jsonFilePath in
-                //
-                let contentsPath = logfilePath
-                
-                // create a json file and call a function of makeJsonFile
-                if FileManager.default.fileExists(atPath: contentsPath)
-                {
-                    let createZipPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(SLog.shared.tempZipFileName).path
-                    if SLog.shared.password.isEmpty
-                    {
-                        isZipped = SSZipArchive.createZipFile(atPath: createZipPath, withContentsOfDirectory: contentsPath)
-                    }
-                    else
-                    {
-                        isZipped = SSZipArchive.createZipFile(atPath: createZipPath, withContentsOfDirectory: contentsPath, keepParentDirectory: true, withPassword: SLog.shared.password)
-                    }
-                    
-                    let zipPath = ((contentsPath as NSString).deletingLastPathComponent as NSString).appendingPathComponent(("\(SLog.shared.finalLogFileNameAfterCombine).zip"))
-                    
-                    do {
-                        if isZipped
-                        {
-                            //
-                            if FileManager.default.fileExists(atPath: zipPath)
-                            {
-                                try FileManager.default.removeItem(atPath: zipPath)
-                            }
-                            
-                            try FileManager.default.copyItem(atPath: createZipPath, toPath: zipPath)
-                            
-                            completion(zipPath)
-                        }
-                        else
-                        {
-                            completion("")
-                        }
-                    }
-                    catch {
-                        print(error.localizedDescription)
-                        completion("")
-                    }
-                }
-                else
-                {
-                    completion("")
+                    completion("", error)
                 }
             }
         }
@@ -722,8 +580,9 @@ public class SLog {
     // ****************************************************
     
     /// Fuction make Json file for ios it will get the phone details
+    /// and store and zip it for the developer
     ///
-    func makeJsonFile(completion: (String) -> ())
+    func makeJsonFile(completion: (String, Error?) -> ())
     {
         // -> URL
         // create empty dict
@@ -751,14 +610,22 @@ public class SLog {
         // Add Values in Dict
         myDict = ["appVersion":appVersion,"OSInstalled":OSInstalled,"deviceModel":deviceModel,"manufacture":manufacture,"freeSpace":freeSpace]
         do {
-            //            try  saveJsonFileInDirectory(jsonObject: myDict, toFilename: SLog.shared.jsonFileName)
-            try saveJsonFileInDirectory(jsonObject: myDict, toFilename: SLog.shared.jsonFileName, completion: { filePath in
-                completion(filePath)
+            try saveJsonFileInDirectory(jsonObject: myDict, toFilename: SLog.shared.jsonFileName, completion: { filePath, saveJsonErr in
+                
+                if saveJsonErr != nil
+                {
+                    completion(filePath, saveJsonErr)
+                }
+                else
+                {
+                    completion(filePath, nil)
+                }
+                
             })
         }
         catch {
             print(error.localizedDescription)
-            completion("")
+            completion("",error)
         }
         
     }
@@ -766,31 +633,33 @@ public class SLog {
     // ****************************************************
     
     // create json file in directory with specific information of device
-    func saveJsonFileInDirectory(jsonObject: Any, toFilename filename: String, completion: (String) -> ()) throws
+    func saveJsonFileInDirectory(jsonObject: Any, toFilename filename: String, completion: (String, Error?) -> ()) throws
     {
         let fm = FileManager.default
         let urls = fm.urls(for: .documentDirectory, in: .userDomainMask)
+        var jsonErr : Error?
         
         if let url = urls.first
         {
             var fileURL = url.appendingPathComponent("\(logFileRootDirectoryName)/")
-            let zipFolder = fileURL.appendingPathComponent("NewZip/")
+            let zipFolder = fileURL.appendingPathComponent("\(Constants.logFileNewFolderName)/")
             let zipFolderUrl = zipFolder.appendingPathComponent(filename)
             fileURL = zipFolderUrl.appendingPathExtension("json")
             let data = try JSONSerialization.data(withJSONObject: jsonObject, options: [.prettyPrinted])
             
             do {
                 try data.write(to: fileURL, options: [.atomicWrite])
-                completion(fileURL.path)
+                completion(fileURL.path, nil)
             }
             catch {
                 print(error.localizedDescription)
-                completion("")
+                jsonErr = error
+                completion("", jsonErr)
             }
         }
         else
         {
-            completion("")
+            completion("", jsonErr)
         }
     }
     
@@ -799,15 +668,6 @@ public class SLog {
     // this function is call from above log function
     func log(text: String?, exception: NSException?, writeInFile : Bool)
     {
-//        var tagToLog:String = ""
-        
-//        if (tag == nil || tag!.isEmpty) {
-//            tagToLog = "Null Tag"
-//        }
-//        else{
-//            tagToLog = tag!
-//        }
-        
         var textToLog:String = ""
         if (text == nil || text!.isEmpty) {
             textToLog = "Null Message"
@@ -824,8 +684,7 @@ public class SLog {
             print("Log:Log: \(textToLog). Exception: \(String(describing: exception))")
         }
         
-        // this function is call for writing logs in log file
-        
+        /// this function is call for writing logs in log file
         if writeInFile
         {
             writeLogInFile(message: text!)

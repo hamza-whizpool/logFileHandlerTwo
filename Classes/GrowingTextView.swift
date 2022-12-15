@@ -3,11 +3,7 @@
 //  logFileHandlerIOS
 //
 //  Created by Himy Mughal on 13/12/2022.
-//
 
-//
-//  GrowingTextView.swift
-//  Pods
 //
 //  Created by Kenneth Tsang on 17/2/2016.
 //  Copyright (c) 2016 Kenneth Tsang. All rights reserved.

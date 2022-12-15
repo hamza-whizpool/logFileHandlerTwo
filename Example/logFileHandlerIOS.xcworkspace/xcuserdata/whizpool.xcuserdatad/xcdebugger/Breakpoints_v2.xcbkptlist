@@ -23,16 +23,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1E7B4F96-BA63-45C0-A904-FA6832C0D678"
+            uuid = "17336E3C-6156-4361-8260-4CD01D12F0C3"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/AlertViewController.swift"
+            filePath = "../Classes/SLog.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
-            landmarkName = "traitCollectionDidChange(_:)"
+            startingLineNumber = "451"
+            endingLineNumber = "451"
+            landmarkName = "writeLogInFile(message:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2581C88-F86F-4C21-AD05-82BDB1D64511"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/SLog.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "611"
+            endingLineNumber = "611"
+            landmarkName = "makeJsonFile(completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
