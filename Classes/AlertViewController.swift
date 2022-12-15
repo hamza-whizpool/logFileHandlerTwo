@@ -50,8 +50,6 @@ public class AlertViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)), name : UIResponder.keyboardDidShowNotification, object: nil)
-        
         // Textview Editing function
         textviewEditing()
         
@@ -240,6 +238,8 @@ extension AlertViewController:UITextViewDelegate {
             self.bugsTextview.translatesAutoresizingMaskIntoConstraints = false
             self.bugsTextview.becomeFirstResponder()
 
+            self.mainTextFieldViewHeight.constant = (self.view.bounds.size.height / 2) - 100
+            
             
             // main view corner radius
             self.textFieldView.layer.cornerRadius = 12.0
@@ -359,35 +359,5 @@ extension AlertViewController:UITextViewDelegate {
         }
         
         return false
-    }
-    
-    //****************************************************
-    
-    @objc
-    private func handle(keyboardShowNotification notification: Notification) {
-        // 1
-        print("Keyboard show notification")
-        
-        // 2
-        if let userInfo = notification.userInfo,
-            // 3
-            let keyboardRectangle = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            
-//            let heightToAdd = self.view.bounds.size.height - keyboardRectangle.height
-            
-            
-//            heightToAdd = heightToAdd
-//            self.bugsTextview.maxHeight = (UIScreen.main.bounds.size.height / 2) - heightToAdd - 150
-//            self.bugsTextview.minHeight = (UIScreen.main.bounds.size.height / 2) - heightToAdd - 150
-            
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.3) {
-                    self.mainTextFieldViewHeight.constant = (self.view.bounds.size.height / 2) - 50
-                    self.view.layoutIfNeeded()
-                }
-            }
-            
-            print(keyboardRectangle.height)
-        }
     }
 }
