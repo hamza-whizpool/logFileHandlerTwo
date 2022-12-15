@@ -9,11 +9,11 @@ import Foundation
 
 public class Constants
 {
-    static let defaultFontName = "kefa"
+    static let defaultFontName = "Helvetica Neue Medium"
     static let defaultTitle = "Report a bug"
-    static let defaultSendBtnText = "Send"
-    static let defaultSendBtnFontSize = 20
-    static let defaultTextViewFontSize = 17
+    static let defaultSendBtnText = "Send Report"
+    static let defaultSendBtnFontSize = 17
+    static let defaultTextViewFontSize = 14
     
     static let defaultDaysForFileDeletion = 7
     static let logFileRootDirectoryName = "Logs"

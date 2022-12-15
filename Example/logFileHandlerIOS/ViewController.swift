@@ -13,11 +13,12 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
         
                 SLog.shared.initilization()
         
-//        // function Textview Editing Calls
+//        //function Textview Editing Calls
 //        SLog.shared.setPassword(password: "QWERTY")
 //
 //        // set Title
@@ -39,14 +40,19 @@ class ViewController: UIViewController {
 //        SLog.shared.setLogFileName(text: "finalLog")
 //
 //        // set alert view background color
-//        SLog.shared.setMainBackgroundColor(backgroundColor: .gray)
+//        SLog.shared.setMainBackgroundColor(backgroundColor: .yellow)
 //
 //        // set image to the close button
-//        SLog.shared.setCloseBtnImage(img: UIImage(named: "testImg")!)
+//        SLog.shared.setSendBtnImage(img: UIImage(named: "testImg")!)
 //
-//        // set text view text, font name, font size, border color and text color
+//        
+//        //set nobe and line color
+//        SLog.shared.setKnobColor(color: .red)
+//        SLog.shared.setLineColor(color: .green)
+//
+//
+//        // set text view text, font name, font size, and text color
 //        SLog.shared.setTextViewBackgroundColor(backgroundColor: .brown)
-//        SLog.shared.setTextViewBorderColor(borderColor: .green)
 //        SLog.shared.setTextViewTextColor(color: .green)
 //        SLog.shared.setTextViewFont(fontName: "Marker Felt Thin")
 //        SLog.shared.setTextViewFontSize(fontSize: 17)
@@ -57,13 +63,12 @@ class ViewController: UIViewController {
 //        SLog.shared.setTitleFontSize(fontSize: 22)
 //        SLog.shared.setTitleColor(color: .purple)
 //
-//        // set send button view text, font name, font size, border color and text color
+//        // set send button view text, font name, font size, and text color
 //        SLog.shared.setSendButtonText(text: "Send Button Text")
 //        SLog.shared.setSendBtnFont(fontName: "Marker Felt Thin")
 //        SLog.shared.setSendBtnFontSize(fontSize: 30)
 //        SLog.shared.setSendBtnTextColor(color: .green)
-//        SLog.shared.setSendButtonBackgroundColor(backgroundColor: .black)
-//        SLog.shared.setSendBtnBorderColor(color: .red)
+//        SLog.shared.setSendButtonBackgroundColor(backgroundColor: .red)
     }
     
     // ****************************************************
@@ -97,10 +102,7 @@ class ViewController: UIViewController {
         
         let bundle = Bundle(for: AlertViewController.self)
         let controllerView = AlertViewController(nibName: "AlertViewController", bundle: bundle)
-        controllerView.modalPresentationStyle = .overCurrentContext
         self.present(controllerView, animated: true, completion: nil)
-        
-        
     }
 }
 

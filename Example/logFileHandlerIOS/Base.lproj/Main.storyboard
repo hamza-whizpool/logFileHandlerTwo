@@ -21,7 +21,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3R-0Q-Yai">
-                                <rect key="frame" x="66" y="311" width="261" height="230"/>
+                                <rect key="frame" x="66" y="109" width="261" height="230"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qQY-Ig-WVf">
                                         <rect key="frame" x="0.0" y="0.0" width="261" height="230"/>
@@ -103,7 +103,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="I3R-0Q-Yai" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="N5t-Uf-vEE"/>
+                            <constraint firstItem="I3R-0Q-Yai" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="50" id="U5R-oL-E1E"/>
                             <constraint firstItem="I3R-0Q-Yai" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="p9f-8l-ddl"/>
                             <constraint firstItem="I3R-0Q-Yai" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="50" id="pVq-H1-pI4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="I3R-0Q-Yai" secondAttribute="trailing" constant="50" id="w1n-JQ-pbD"/>

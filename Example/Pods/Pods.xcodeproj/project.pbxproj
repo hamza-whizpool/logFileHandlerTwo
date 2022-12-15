@@ -338,11 +338,11 @@
 			isa = PBXGroup;
 			children = (
 				6D3BDC862948A1080047D2DB /* AlertViewController.swift */,
-				6D3BDC872948A1080047D2DB /* AlertViewController.xib */,
-				6D3BDC892948A1080047D2DB /* asset.xcassets */,
 				6D3BDC852948A1080047D2DB /* Constants.swift */,
 				6D3BDC842948A1080047D2DB /* GrowingTextView.swift */,
 				6D3BDC882948A1080047D2DB /* SLog.swift */,
+				6D3BDC892948A1080047D2DB /* asset.xcassets */,
+				6D3BDC872948A1080047D2DB /* AlertViewController.xib */,
 				3C6DD93571A1A8DA50C81921F311A52E /* Pod */,
 				787CECB8312F0CEB2FC24116ABD7E9C1 /* Support Files */,
 			);

@@ -30,31 +30,27 @@ public class SLog {
     var titleText      : String = Constants.defaultTitle
     var titleTextColor : UIColor?
     var titleFont      = Constants.defaultFontName
-    var titleFontSize  = 22
+    var titleFontSize  = Constants.defaultSendBtnFontSize
+    
+    // line and knob color
+    var lineColor : UIColor?
+    var knobColor : UIColor?
     
     // send button Text, color, font and font size
-    var sendButtonBackgroundColor = UIColor(named: "color")
+    var sendButtonBackgroundColor : UIColor?
     var sendBtnText      : String = Constants.defaultSendBtnText
-    var SendBtntextColor = UIColor(named: "color")
+    var SendBtntextColor = UIColor.white
     var sendBtnFont      = Constants.defaultFontName
     var sendBtnFontSize  = Constants.defaultSendBtnFontSize
-    var sendBtnBorderColor : UIColor?
     
     var textViewBackgroundColor : UIColor?
-    var textViewBorderColor : UIColor?
-//    var textViewBorderColorDark = UIColor.black.cgColor
     var textViewTextColor : UIColor?
     var textViewFont      = Constants.defaultFontName
     var textViewFontSize  = Constants.defaultTextViewFontSize
     
-    
-    // border color
-    var borderColor = UIColor.black.cgColor
-    var borderColorDark = UIColor.white.cgColor
-    
     // default cg color
-    var defaultColorWhite = UIColor.white
-    var defaultColorBlack = UIColor.black
+    var defaultColorWhite = #colorLiteral(red: 0.8509805202, green: 0.8509805799, blue: 0.8509805202, alpha: 1)
+    var defaultColorBlack = #colorLiteral(red: 0.1098999158, green: 0.1096580997, blue: 0.1184011772, alpha: 1)
 
     // Days after log files deleted
     private var filesDeletionAfterDays:Int = Constants.defaultDaysForFileDeletion
@@ -96,7 +92,7 @@ public class SLog {
     var textViewPlaceHolder = Constants.textViewPlaceHolder
     
     // close button icon
-    var closeBtnIcon = UIImage(named: "icons")
+    var sendBtnImage : UIImage?
     
     
     // MARK: - ********************* initilization *********************// -
@@ -297,9 +293,9 @@ public class SLog {
     // ****************************************************
     
     // function to set close button image
-    public func setCloseBtnImage (img : UIImage)
+    public func setSendBtnImage (img : UIImage)
     {
-        self.closeBtnIcon = img
+        self.sendBtnImage = img
     }
     
     // ****************************************************
@@ -332,6 +328,26 @@ public class SLog {
         DispatchQueue.main.async {
             //
             self.sendButtonBackgroundColor = backgroundColor
+        }
+    }
+    
+    // ********************* line and knob View *********************
+    
+    public func setLineColor (color : UIColor)
+    {
+        DispatchQueue.main.async {
+            //
+            self.lineColor = color
+        }
+    }
+    
+    //****************************************************
+    
+    public func setKnobColor (color : UIColor)
+    {
+        DispatchQueue.main.async {
+            //
+            self.knobColor = color
         }
     }
     
@@ -398,28 +414,6 @@ public class SLog {
         DispatchQueue.main.async {
             //
             self.sendBtnFontSize = fontSize
-        }
-    }
-    
-    //****************************************************
-    
-    // set Send Btn view border Color
-    public func setSendBtnBorderColor (color:UIColor)
-    {
-        DispatchQueue.main.async {
-            //
-            self.sendBtnBorderColor = color
-        }
-    }
-    
-    //****************************************************
-    
-    // setting border color for TEXT field
-    public func setTextViewBorderColor (borderColor:UIColor)
-    {
-        DispatchQueue.main.async {
-            //
-            self.textViewBorderColor = borderColor
         }
     }
     

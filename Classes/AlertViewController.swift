@@ -29,14 +29,18 @@ public class AlertViewController: UIViewController {
     // main view outlet
     @IBOutlet weak var mainAlertView: UIView!
     @IBOutlet weak var textFieldView: UIView!
+    @IBOutlet weak var mainTextFieldViewHeight : NSLayoutConstraint!
 
+    @IBOutlet weak var lineView: UIView!
+    @IBOutlet weak var knobView: UIView!
+    
     // Bugs TextView Outlet
     @IBOutlet weak var bugsTextview: GrowingTextView!
 
     // Close Btn outlet
-    @IBOutlet weak var closeBtnOutlet: UIButton!
+//    @IBOutlet weak var closeBtnOutlet: UIButton!
 
-    @IBOutlet weak var closeBtnImg : UIImageView!
+    @IBOutlet weak var sendBtnImage : UIImageView!
     
     
     var bDarkMode = false
@@ -46,8 +50,7 @@ public class AlertViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        // dailog box hidden
-        textFieldView.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(handle(keyboardShowNotification:)), name : UIResponder.keyboardDidShowNotification, object: nil)
         
         // Textview Editing function
         textviewEditing()
@@ -100,22 +103,13 @@ public class AlertViewController: UIViewController {
         }
     }
     
-    //****************************************************
-    
-    // close Button Action will close the main view
-    @IBAction func closeBtnAction(_ sender: UIButton) {
-        textFieldView.isHidden = true
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     // MARK: - // ********************* Methods *********************// -
     
-    func newControllerInitilizer() {
-        
-        closeBtnOutlet.setTitle("", for: .normal)
+    func newControllerInitilizer()
+    {
         textFieldView.isHidden = false
         //view.backgroundColor = UIColor(white: 1, alpha: 0.4)
-        view.backgroundColor = UIColor.init(white: 0.7, alpha: 0.7)
+        view.backgroundColor = .init(white: 0, alpha: 1.0)
     }
     
     //****************************************************
@@ -158,55 +152,22 @@ public class AlertViewController: UIViewController {
     //****************************************************
     
     /// this fuction executed right after when phone enables or disables the dark mode \
-    /// upone that we have to update the uicolors for the Border and few views
+    /// upone that we have to update the uicolors of views
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?)
     {
         self.bDarkMode = self.checkDarkMode()
         
-        // textFieldView border color handling along with dark mode
-        self.textFieldView.layer.borderColor = SLog.shared.borderColor
-        if SLog.shared.textViewBorderColor != nil
-        {
-            self.textFieldView.layer.borderColor = SLog.shared.textViewBorderColor?.cgColor
-        }
-        else if self.bDarkMode
-        {
-            self.textFieldView.layer.borderColor = SLog.shared.borderColorDark
-        }
-        
-        
         // textFieldView backgroundColor color handling along with dark mode
-        self.textFieldView.backgroundColor = SLog.shared.defaultColorWhite
-//        self.bugsTextview.backgroundColor = SLog.shared.defaultColorWhite
         if SLog.shared.textViewBackgroundColor != nil
         {
             self.textFieldView.backgroundColor = SLog.shared.textViewBackgroundColor
-//            self.bugsTextview.backgroundColor = SLog.shared.textViewBackgroundColor
-        }
-        else if self.bDarkMode
-        {
-            self.textFieldView.backgroundColor = SLog.shared.defaultColorBlack
-//            self.bugsTextview.backgroundColor = SLog.shared.defaultColorBlack
         }
         
         
         // setup main alert view background color
-        self.mainAlertView.backgroundColor = SLog.shared.defaultColorWhite
-//        self.bugsTextview.backgroundColor = SLog.shared.defaultColorWhite
         if SLog.shared.alertBackgroundColor != nil
         {
             self.mainAlertView.backgroundColor = SLog.shared.alertBackgroundColor
-            
-            if SLog.shared.textViewBackgroundColor == nil
-            {
-                self.textFieldView.backgroundColor = SLog.shared.alertBackgroundColor
-            }
-            
-//            self.bugsTextview.backgroundColor = SLog.shared.alertBackgroundColor
-        }
-        else if self.bDarkMode
-        {
-            self.mainAlertView.backgroundColor = SLog.shared.defaultColorBlack
         }
         
         
@@ -223,26 +184,9 @@ public class AlertViewController: UIViewController {
         
         
         // title color handling along with dark mode
-        self.titleLbl.textColor = SLog.shared.defaultColorBlack
         if SLog.shared.titleTextColor != nil
         {
             self.titleLbl.textColor = SLog.shared.titleTextColor
-        }
-        else if self.bDarkMode
-        {
-            self.titleLbl.textColor = SLog.shared.defaultColorWhite
-        }
-        
-        
-        // Send Button border color handling along with dark mode
-        self.sendBtnView.layer.borderColor = SLog.shared.borderColor
-        if SLog.shared.sendBtnBorderColor != nil
-        {
-            self.sendBtnView.layer.borderColor = SLog.shared.sendBtnBorderColor?.cgColor
-        }
-        else if self.bDarkMode
-        {
-            self.sendBtnView.layer.borderColor = SLog.shared.borderColorDark
         }
     }
 }
@@ -285,8 +229,8 @@ extension AlertViewController:UITextViewDelegate {
             //
             self.bugsTextview.delegate = self
             self.bugsTextview.layer.cornerRadius = 12.0
-            self.bugsTextview.maxHeight = (UIScreen.main.bounds.size.height / 2) - 100
-            self.bugsTextview.minHeight = 100
+//            self.bugsTextview.maxHeight = (UIScreen.main.bounds.size.height / 2) - 140
+//            self.bugsTextview.minHeight = (UIScreen.main.bounds.size.height / 2) - 140
             self.bugsTextview.trimWhiteSpaceWhenEndEditing = true
             self.bugsTextview.placeholder = SLog.shared.textViewPlaceHolder
             self.bugsTextview.placeholderColor = UIColor(white: 0.8, alpha: 1.0)
@@ -294,40 +238,58 @@ extension AlertViewController:UITextViewDelegate {
             self.bugsTextview.textColor = SLog.shared.textViewTextColor
             self.bugsTextview.font = UIFont(name: SLog.shared.textViewFont, size: CGFloat(SLog.shared.textViewFontSize))
             self.bugsTextview.translatesAutoresizingMaskIntoConstraints = false
-            
-            
-            // Send Button Border or corner radius
-//            self.sendBtnView.layer.borderColor = UIColor.white.cgColor
-            self.sendBtnView.layer.borderWidth = 1.0
-            self.sendBtnView.layer.cornerRadius = 12.0
-            self.sendBtnView.backgroundColor = SLog.shared.sendButtonBackgroundColor
+            self.bugsTextview.becomeFirstResponder()
+
             
             // main view corner radius
-            self.textFieldView.layer.borderWidth = 1.0
             self.textFieldView.layer.cornerRadius = 12.0
-//            self.textFieldView.backgroundColor = SLog.shared.textViewBackgroundColor
-//            self.textFieldView.layer.borderColor = UIColor.white.cgColor //SLog.shared.textViewBorderColor?.cgColor
             
-//            main_dialogBox_view.layer.borderWidth = 1.0
+            if SLog.shared.textViewBackgroundColor != nil
+            {
+                self.textFieldView.backgroundColor = SLog.shared.textViewBackgroundColor
+            }
+            
             self.mainAlertView.layer.cornerRadius = 12.0
 //            self.mainAlertView.backgroundColor = SLog.shared.alertBackgroundColor
 //            self.titile_lbl.textColor = SLog.shared.textColor
             
             
-            // set the image of the close Btn
-            if SLog.shared.closeBtnIcon != nil
+            // set the image of the send Btn
+            if SLog.shared.sendBtnImage != nil
             {
-                self.closeBtnImg.image = SLog.shared.closeBtnIcon
+                self.sendBtnImage.image = SLog.shared.sendBtnImage
             }
+
+            
+            // set line and knob color
+            if SLog.shared.knobColor != nil
+            {
+                self.lineView.backgroundColor = SLog.shared.lineColor
+            }
+            
+            self.knobView.layer.cornerRadius = 3
+            if SLog.shared.lineColor != nil
+            {
+                self.knobView.backgroundColor = SLog.shared.knobColor
+            }
+            
             
             // Title text color , size and font
             self.titleLbl.textColor = SLog.shared.titleTextColor
             self.titleLbl.font = UIFont(name: SLog.shared.titleFont, size: CGFloat(SLog.shared.titleFontSize))
             
+            
+            // Send Button corner radius, text and text color
+            self.sendBtnView.layer.cornerRadius = 12.0
+            
+            if SLog.shared.sendButtonBackgroundColor != nil
+            {
+                self.sendBtnView.backgroundColor = SLog.shared.sendButtonBackgroundColor
+            }
+            
             // send button text color , size and font
             self.sendBtnLbl.textColor = SLog.shared.SendBtntextColor
             self.sendBtnLbl.font = UIFont(name: SLog.shared.sendBtnFont, size: CGFloat(SLog.shared.sendBtnFontSize))
-//            self.sendBtnView.layer.borderColor = SLog.shared.sendBtnBorderColor?.cgColor
             
             
             // set appName to tittle label
@@ -340,8 +302,6 @@ extension AlertViewController:UITextViewDelegate {
             {
                 self.titleLbl.text = SLog.shared.titleText
             }
-            
-//            let str = NSLocalizedString("tileLabel", comment: "")
             
             // set Send button Lable
             if SLog.shared.sendBtnText.isEmpty
@@ -399,5 +359,35 @@ extension AlertViewController:UITextViewDelegate {
         }
         
         return false
+    }
+    
+    //****************************************************
+    
+    @objc
+    private func handle(keyboardShowNotification notification: Notification) {
+        // 1
+        print("Keyboard show notification")
+        
+        // 2
+        if let userInfo = notification.userInfo,
+            // 3
+            let keyboardRectangle = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            
+//            let heightToAdd = self.view.bounds.size.height - keyboardRectangle.height
+            
+            
+//            heightToAdd = heightToAdd
+//            self.bugsTextview.maxHeight = (UIScreen.main.bounds.size.height / 2) - heightToAdd - 150
+//            self.bugsTextview.minHeight = (UIScreen.main.bounds.size.height / 2) - heightToAdd - 150
+            
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.3) {
+                    self.mainTextFieldViewHeight.constant = (self.view.bounds.size.height / 2) - 50
+                    self.view.layoutIfNeeded()
+                }
+            }
+            
+            print(keyboardRectangle.height)
+        }
     }
 }
