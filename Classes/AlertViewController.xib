@@ -175,11 +175,6 @@
             </constraints>
             <point key="canvasLocation" x="32.824427480916029" y="-32.394366197183103"/>
         </view>
-        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="2g8-S6-l6V">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <point key="canvasLocation" x="-327" y="-424"/>
-        </imageView>
     </objects>
     <resources>
         <image name="sendIcon" width="80" height="88"/>

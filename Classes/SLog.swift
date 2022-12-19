@@ -10,15 +10,15 @@ import UIKit
 import SSZipArchive
 
 
-public class SLog {
+@objc public class SLog : NSObject {
     
     // ********************* Variables *********************//
     
     // Instance of Slog file
-    public static let shared = SLog()
+    @objc public static let shared = SLog()
     
     //Initializer access level change now
-        private init(){}
+    private override init(){}
     
     // Zip File Password
     var password = ""
@@ -101,7 +101,7 @@ public class SLog {
     /// FUNCTION TAKES THE DATE FORMAT FOR THE LOG FILE
     /// FILES ARE CREATED WITH THE NAMES OF THE DATE SO THAT IT IS EASY TO HANDLE FOR SORTING
     /// AND IT CREATE THE DIRECTORY WITH FOLDER NAME
-    public func initilization()
+    @objc public func initilization()
     {
         let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
         let url = NSURL(fileURLWithPath: path)
@@ -145,7 +145,7 @@ public class SLog {
     // MARK: - ********************* Public Functions *********************// -
     
     /// this function is used for writing logs in log file and print on console
-    public func summaryLog(text: String?)
+    @objc public func summaryLog(text: String?)
     {
         log(text: text, exception: nil, writeInFile: true)
     }
@@ -153,7 +153,7 @@ public class SLog {
     // ****************************************************
     
     /// this function is used to print on console and writing logs in log file ( optional )
-    public func detailLog(text: String?, writeIntoFile : Bool)
+    @objc public func detailLog(text: String?, writeIntoFile : Bool)
     {
         log(text: text, exception: nil, writeInFile: writeIntoFile)
     }
@@ -162,7 +162,7 @@ public class SLog {
     
     // Function For checking files are greater then (KEEP_OLD_LOGS_UP_TO_DAYS) or not and call function for deleting files
     // we can also delete the files forcefully by developer end if you want to
-    public func deleteOldLogs(forcefullyDelete: Bool) -> Bool
+    @objc public func deleteOldLogs(forcefullyDelete: Bool) -> Bool
     {
         let fileManager:FileManager = FileManager.default
         let fileList = listFilesFromDocumentsFolder()
@@ -213,63 +213,63 @@ public class SLog {
     // ****************************************************
     
     // function to get log days value
-    public func setDaysForLog (numberOfDays: Int) {
+    @objc public func setDaysForLog (numberOfDays: Int) {
         filesDeletionAfterDays = numberOfDays
     }
     
     // ****************************************************
     
     // function to get password
-    public func setPassword(password:String) {
+    @objc public func setPassword(password:String) {
         self.password = password
     }
     
     // ****************************************************
     
     // function to get the alert title from developer end
-    public func setTitle(title:String) {
+    @objc public func setTitle(title:String) {
         self.titleText = title
     }
     
     // ****************************************************
     
     // function to get the send button text from developer end
-    public func setSendButtonText (text:String) {
+    @objc public func setSendButtonText (text:String) {
         self.sendBtnText = text
     }
     
     // ****************************************************
     
     // function to get email from the developer end
-    public func setEmail (text:String) {
+    @objc public func setEmail (text:String) {
         self.sendToEmail = text
     }
     
     // ****************************************************
     
     // function to get tag value
-    public func setSubjectToEmail (sub: String) {
+    @objc public func setSubjectToEmail (sub: String) {
         self.emailSubject = sub
     }
     
     // ****************************************************
     
     // function to set place holder for the text view
-    public func setPlaceHolder (text:String) {
+    @objc public func setPlaceHolder (text:String) {
         self.textViewPlaceHolder = text
     }
     
     // ****************************************************
     
     // function to set final log file name
-    public func setLogFileName (text:String) {
+    @objc public func setLogFileName (text:String) {
         self.finalLogFileNameAfterCombine = text
     }
     
     // ****************************************************
     
     // function to set close button image
-    public func setSendBtnImage (img : UIImage)
+    @objc public func setSendBtnImage (img : UIImage)
     {
         self.sendBtnImage = img
     }
@@ -277,7 +277,7 @@ public class SLog {
     // ****************************************************
     
     // setting background color for alert view
-    public func setMainBackgroundColor (backgroundColor : UIColor)
+    @objc  public func setMainBackgroundColor (backgroundColor : UIColor)
     {
         self.alertBackgroundColor = backgroundColor
     }
@@ -285,7 +285,7 @@ public class SLog {
     // ****************************************************
     
     // setting background color for Text View
-    public func setTextViewBackgroundColor (backgroundColor : UIColor)
+    @objc public func setTextViewBackgroundColor (backgroundColor : UIColor)
     {
         self.textViewBackgroundColor = backgroundColor
     }
@@ -293,21 +293,21 @@ public class SLog {
     // ****************************************************
     
     // setting background color for Send Button
-    public func setSendButtonBackgroundColor (backgroundColor : UIColor)
+    @objc public func setSendButtonBackgroundColor (backgroundColor : UIColor)
     {
         self.sendButtonBackgroundColor = backgroundColor
     }
     
     // ********************* line and knob View *********************
     
-    public func setLineColor (color : UIColor)
+    @objc public func setLineColor (color : UIColor)
     {
         self.lineColor = color
     }
     
     //****************************************************
     
-    public func setKnobColor (color : UIColor)
+    @objc public func setKnobColor (color : UIColor)
     {
         self.knobColor = color
     }
@@ -315,7 +315,7 @@ public class SLog {
     // ********************* Title View *********************
     
     // setting title color
-    public func setTitleColor (color : UIColor)
+    @objc public func setTitleColor (color : UIColor)
     {
         self.titleTextColor = color
     }
@@ -323,7 +323,7 @@ public class SLog {
     //****************************************************
     
     // setting title Font
-    public func setTitleFont (fontName : String)
+    @objc public func setTitleFont (fontName : String)
     {
         self.titleFont = fontName
     }
@@ -331,7 +331,7 @@ public class SLog {
     //****************************************************
     
     // setting title Font Size
-    public func setTitleFontSize (fontSize: Int)
+    @objc public func setTitleFontSize (fontSize: Int)
     {
         self.titleFontSize = fontSize
     }
@@ -339,7 +339,7 @@ public class SLog {
     //****************************************************
     
     // setting Send button color
-    public func setSendBtnTextColor (color : UIColor)
+    @objc public func setSendBtnTextColor (color : UIColor)
     {
         self.SendBtntextColor = color
     }
@@ -347,7 +347,7 @@ public class SLog {
     //****************************************************
     
     // setting Send button Title Font
-    public func setSendBtnFont (fontName : String)
+    @objc public func setSendBtnFont (fontName : String)
     {
         self.sendBtnFont = fontName
     }
@@ -355,7 +355,7 @@ public class SLog {
     //****************************************************
     
     // setting Send button Title Font Size
-    public func setSendBtnFontSize (fontSize: Int)
+    @objc public func setSendBtnFontSize (fontSize: Int)
     {
         self.sendBtnFontSize = fontSize
     }
@@ -363,7 +363,7 @@ public class SLog {
     //****************************************************
     
     // setting background color for TEXT view
-    public func setTextViewTextColor (color:UIColor)
+    @objc public func setTextViewTextColor (color:UIColor)
     {
         self.textViewTextColor = color
     }
@@ -371,7 +371,7 @@ public class SLog {
     //****************************************************
     
     // setting text field Font
-    public func setTextViewFont (fontName : String)
+    @objc public func setTextViewFont (fontName : String)
     {
         self.textViewFont = fontName
     }
@@ -379,7 +379,7 @@ public class SLog {
     //****************************************************
     
     // setting text field Font
-    public func setTextViewFontSize (fontSize: Int)
+    @objc public func setTextViewFontSize (fontSize: Int)
     {
         self.textViewFontSize = fontSize
     }

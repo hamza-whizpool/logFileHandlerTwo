@@ -24,7 +24,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
         -> Currently running app version
         -> Free storage space available
 
-## Usage
+## Usage SWIFT
 
         // initilization sdk
         SLog.shared.initilization()
@@ -87,7 +87,25 @@ To run the example project, clone the repo, and run `pod install` from the Examp
         let secondView = AlertViewController(nibName: "AlertViewController", bundle: amazingBundle)
         secondView.modalPresentationStyle = .fullScreen
         self.present(secondView, animated: true, completion: nil)
+        
+## Usage Objective C
 
+        // import the pod file in .m file
+        @import logFileHandlerIOS;
+        
+        // initilization sdk
+        [ [SLog shared] initilization ];
+
+        // use the function of the pods
+        [ [SLog shared] summaryLogWithText:@"LOL" ];
+
+
+        // call the alert view Controller
+        NSBundle *myBundle = [NSBundle bundleForClass:[AlertViewController class]];
+        AlertViewController *VC = [[AlertViewController alloc] initWithNibName:@"AlertViewController" bundle:myBundle];
+        [self presentViewController:VC animated:YES completion:nil];
+        
+        
 ## Requirements
 
 ## Installation
