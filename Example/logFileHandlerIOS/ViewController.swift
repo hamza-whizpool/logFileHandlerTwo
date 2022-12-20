@@ -89,7 +89,10 @@ class ViewController: UIViewController {
 
     @IBAction func delteLogBtn(_ sender : UIButton)
     {
-        
+        if let filePath = Bundle.main.path(forResource: "Twitter", ofType: "png")
+        {
+            SLog.shared.addAttachment(fileName: "twitter", url: filePath)
+        }
     }
     
     // ****************************************************

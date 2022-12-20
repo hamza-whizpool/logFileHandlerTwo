@@ -13,6 +13,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		6D4D98BF2951D6C70066F36E /* Twitter.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4D98BE2951D6C70066F36E /* Twitter.png */; };
 		961F8F4AEB28A2E67BFAA5B8 /* Pods_logFileHandlerIOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A108AE707F716988AE9129DA /* Pods_logFileHandlerIOS_Example.framework */; };
 		A719A0E85A764571A9AB69F5 /* Pods_logFileHandlerIOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0545FCD6538BE31D35E2E22B /* Pods_logFileHandlerIOS_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		607FACE51AFB9204008FA782 /* logFileHandlerIOS_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = logFileHandlerIOS_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		6D4D98BE2951D6C70066F36E /* Twitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Twitter.png; sourceTree = "<group>"; };
 		7756A06660D61ACAB22EB9CD /* Pods-logFileHandlerIOS_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-logFileHandlerIOS_Example.release.xcconfig"; path = "Target Support Files/Pods-logFileHandlerIOS_Example/Pods-logFileHandlerIOS_Example.release.xcconfig"; sourceTree = "<group>"; };
 		9EBACD5DBB796A370B957AE2 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		A108AE707F716988AE9129DA /* Pods_logFileHandlerIOS_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_logFileHandlerIOS_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				6D4D98BE2951D6C70066F36E /* Twitter.png */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
+				6D4D98BF2951D6C70066F36E /* Twitter.png in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);

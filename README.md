@@ -24,7 +24,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
         -> Currently running app version
         -> Free storage space available
 
-## Usage SWIFT
+## Usage Swift
 
         // initilization sdk
         SLog.shared.initilization()
@@ -127,7 +127,7 @@ The following log levels are supported:
  - `Error`
  - `Message`
  
- ## Let's log
+ ## Let's Log
 
 ```swift
  // let's import the logging API package

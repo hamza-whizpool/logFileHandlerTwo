@@ -95,6 +95,13 @@ import SSZipArchive
     var sendBtnImage : UIImage?
     
     
+    struct attachmentDetail {
+        var fileName = ""
+        var url = ""
+    }
+    
+    var addAttachmentArray = [attachmentDetail]()
+    
     // MARK: - ********************* initilization *********************// -
     
     /// IN INITILLIZATION WE CAN CREATE THE LOG FOLDER
@@ -382,6 +389,14 @@ import SSZipArchive
     @objc public func setTextViewFontSize (fontSize: Int)
     {
         self.textViewFontSize = fontSize
+    }
+    
+    //****************************************************
+    
+    @objc public func addAttachment (fileName : String , url : String)
+    {
+        let attachmentItem = attachmentDetail(fileName: fileName , url: url)
+        addAttachmentArray.append(attachmentItem)
     }
     
     // MARK: - ********************* Private Functions *********************// -
