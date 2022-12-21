@@ -76,16 +76,15 @@ public class AlertViewController: UIViewController {
             composer.setToRecipients([recieverEmail])
             composer.setSubject(SLog.shared.emailSubject)
             composer.setMessageBody(bugsTextview.text, isHTML: true)
+            
             let filePath = SLog.shared.getRootDirPath()
             let url = URL(string: filePath)
             let zipPath = url!.appendingPathComponent("/\(SLog.shared.logFileNewFolderName)")
+            
             do {
                 self.createPasswordProtectedZipLogFile(at: zipPath.path, composer: composer)
                 self.checkAttachedFiles(composer: composer)
-                
-                if MFMailComposeViewController.canSendMail() {
-                    self.present(composer, animated: true)
-                }
+                self.present(composer, animated: true)
             }
         }
     }
@@ -94,12 +93,11 @@ public class AlertViewController: UIViewController {
     
     func checkAttachedFiles(composer viewController: MFMailComposeViewController)
     {
-        for filePath in SLog.shared.addAttachmentArray
+        for file in SLog.shared.addAttachmentArray
         {
-            if let fileData = NSData(contentsOfFile: filePath.url)
+            if let fileData = NSData(contentsOfFile: file.url)
             {
-                let mimeType = mimeType(for: fileData as Data)
-                viewController.addAttachmentData(fileData as Data, mimeType: mimeType, fileName: filePath.fileName)
+                viewController.addAttachmentData(fileData as Data, mimeType: file.mimeType, fileName: file.fileName)
             }
         }
     }
@@ -164,33 +162,6 @@ public class AlertViewController: UIViewController {
                     }
                 }
             }
-        }
-    }
-    
-    //****************************************************
-    
-    func mimeType(for data: Data) -> String {
-
-        var b: UInt8 = 0
-        data.copyBytes(to: &b, count: 1)
-
-        switch b {
-        case 0xFF:
-            return "image/jpeg"
-        case 0x89:
-            return "image/png"
-        case 0x47:
-            return "image/gif"
-        case 0x4D, 0x49:
-            return "image/tiff"
-        case 0x25:
-            return "application/pdf"
-        case 0xD0:
-            return "application/vnd"
-        case 0x46:
-            return "text/plain"
-        default:
-            return "application/octet-stream"
         }
     }
     

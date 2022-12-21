@@ -51,7 +51,7 @@ import SSZipArchive
     // default cg color
     var defaultColorWhite = #colorLiteral(red: 0.8509805202, green: 0.8509805799, blue: 0.8509805202, alpha: 1)
     var defaultColorBlack = #colorLiteral(red: 0.1098999158, green: 0.1096580997, blue: 0.1184011772, alpha: 1)
-
+    
     // Days after log files deleted
     private var filesDeletionAfterDays:Int = Constants.defaultDaysForFileDeletion
     
@@ -72,7 +72,7 @@ import SSZipArchive
     
     // send by default email of developer
     var sendToEmail: String = ""
-
+    
     // Email Subject for mail composer
     var emailSubject = Constants.emailSubject
     
@@ -80,7 +80,7 @@ import SSZipArchive
     var finalLogFileNameAfterCombine = Constants.finalLogFileNameAfterCombine
     
     // zip attach file name
-//    var zipFileName = "LogFile.zip"
+    //    var zipFileName = "LogFile.zip"
     
     // zip temporary save file name
     var tempZipFileName = Constants.tempZipFileName
@@ -95,12 +95,13 @@ import SSZipArchive
     var sendBtnImage : UIImage?
     
     
-    struct attachmentDetail {
+    struct AttachmentDetail {
         var fileName = ""
+        var mimeType = ""
         var url = ""
     }
     
-    var addAttachmentArray = [attachmentDetail]()
+    var addAttachmentArray = [AttachmentDetail]()
     
     // MARK: - ********************* initilization *********************// -
     
@@ -156,7 +157,7 @@ import SSZipArchive
     {
         log(text: text, exception: nil, writeInFile: true)
     }
-
+    
     // ****************************************************
     
     /// this function is used to print on console and writing logs in log file ( optional )
@@ -164,7 +165,7 @@ import SSZipArchive
     {
         log(text: text, exception: nil, writeInFile: writeIntoFile)
     }
-
+    
     // ****************************************************
     
     // Function For checking files are greater then (KEEP_OLD_LOGS_UP_TO_DAYS) or not and call function for deleting files
@@ -382,7 +383,7 @@ import SSZipArchive
     {
         self.textViewFont = fontName
     }
-
+    
     //****************************************************
     
     // setting text field Font
@@ -393,9 +394,18 @@ import SSZipArchive
     
     //****************************************************
     
-    @objc public func addAttachment (fileName : String , url : String)
+    @objc public func addAttachment (fileName : String = "" , url : String, mimeType : String)
     {
-        let attachmentItem = attachmentDetail(fileName: fileName , url: url)
+        var tempFileName = fileName
+        
+        if tempFileName.isEmpty || tempFileName == ""
+        {
+            let fileUrl : NSString =  url as NSString
+            let name : NSString = fileUrl.lastPathComponent as NSString
+            tempFileName = name.deletingPathExtension
+        }
+        
+        let attachmentItem = AttachmentDetail(fileName: tempFileName , mimeType: mimeType, url: url)
         addAttachmentArray.append(attachmentItem)
     }
     

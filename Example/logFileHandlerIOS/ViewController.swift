@@ -91,7 +91,7 @@ class ViewController: UIViewController {
     {
         if let filePath = Bundle.main.path(forResource: "Twitter", ofType: "png")
         {
-            SLog.shared.addAttachment(fileName: "twitter", url: filePath)
+            SLog.shared.addAttachment(url: filePath, mimeType: "image/png")
         }
     }
     

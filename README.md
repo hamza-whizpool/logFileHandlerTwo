@@ -44,6 +44,9 @@ To run the example project, clone the repo, and run `pod install` from the Examp
         // set Title
         SLog.shared.setTitle(title: "Map App")
         
+        // Attachment Files
+        SLog.shared.addAttachment(fileName: "icon", url: filePath, mimeType: "image/png")
+        
         // set email
         SLog.shared.setEmail(text: "abc@xyz.com")
         
@@ -98,7 +101,6 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
         // use the function of the pods
         [ [SLog shared] summaryLogWithText:@"LOL" ];
-
 
         // call the alert view Controller
         NSBundle *myBundle = [NSBundle bundleForClass:[AlertViewController class]];
